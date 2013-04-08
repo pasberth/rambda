@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'rambda'
 
 module Rambda
@@ -11,6 +12,8 @@ module Rambda
         Params.new(self, [])
       end
     end
+
+    alias λ rambda
   end
 end
 

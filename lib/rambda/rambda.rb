@@ -13,18 +13,24 @@ module Rambda
       @block = block
     end
 
+    def arity
+      @params.size
+    end
+
     def call(*args, &block)
       args << block if block
+      args = @args + args
 
-      if @params.size > (@args + args).size
-        Rambda.new(@receiver, @params, (@args + args), @block)
+      if arity > args.size
+        Rambda.new(@receiver, @params, args, @block)
       else
-        r = lambda(&Body.new(@receiver, @params, (@args + args))).(&@block)
+        args, rest = args[0, arity], args[arity..-1]
+        r = lambda(&Body.new(@receiver, @params, args)).(&@block)
         case r
         when Itself
           lambda(&r).()
         when Message
-          lambda(&r)
+          lambda(&r).(*rest)
         else
           r
         end

@@ -44,8 +44,8 @@ describe "#rambda" do
     car = rambda.x.y{x}
     cdr = rambda.x.y{y}
     l = cons.(1, cons.(2,3))
-    l.(car).().should == 1
-    l.(cdr).().(car).().should == 2
-    l.(cdr).().(cdr).().should == 3
+    l.(car).should == 1
+    l.(cdr).(car).should == 2
+    l.(cdr).(cdr).should == 3
   end
 end

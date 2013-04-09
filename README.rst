@@ -23,9 +23,9 @@ Examples
   car = rambda.x.y{x}
   cdr = rambda.x.y{y}
   l = cons.(1, cons.(2,3))
-  l.(car).() # => 1
-  l.(cdr).().(car).() # => 2
-  l.(cdr).().(cdr).() # => 3
+  l.(car) # => 1
+  l.(cdr).(car) # => 2
+  l.(cdr).(cdr) # => 3
 
 Installation
 --------------------------------------------------------------------------------

@@ -15,6 +15,14 @@ module Rambda
     end
 
     def method_missing(name, *args, &block)
+      args.map! do |a|
+        case a
+        when Itself then ::Object.send(:lambda, &a).()
+        when Message then ::Object.send(:lambda, &a)
+        else a
+        end
+      end
+
       case name
       when *@params
         if args.empty? and block.nil?
